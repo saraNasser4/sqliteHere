@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+</head>
+<body>
+    <h1>SQLITE</h1>
+
+    <h2>Day 1</h2>
+    <span>Fundamental</span>
+    <h3>How to install and play with SQLITE</h3>
+    <ul>
+        <li>Downloaded it from the sqlite doc</li>
+        <li>Write <b>Sqlite3</b> to open it and be able to play with it!</li>
+        <li>Then create the base bebe <code>CREATE TABLE users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT,
+                age INTEGER
+        );</code>
+        </li>
+        <li>Insert some data <code>INSERT INTO users (name, age) VALUES ('Sara', 21);</code></li>
+        <li>Printed it out <code>SELECT * FROM users;</code></li>
+    </ul>
+
+    <h3>SELECT</h3>
+    <span>It is for get something from something</span>
+    <ul>
+        <li><code>SELECT trackid, name, composer, unitprice FROM tracks;</code> <small>You need to get x y z from db called tracks</small></li>
+        <li><code>SELECT * FROM tracks;</code> <small>You need to get all of the data from db called tracks</small></li>
+    </ul>
+    
+    <h3>ORDER BY</h3>
+    <span>since if you used the normal <code>SELECT</code> it won't be in order we use this</span>
+    <ul>
+        <li><code>SELECT trackid, name, albumid FROM tracks ORDER BY albumid ASC;</code> <small>You need to get x y z from db called tracks the ordering from the small to bigger</small></li>
+        <span>You can remove <code>ASC</code> since it's the default or you can add <code>DESC</code></span>
+        <li><code>SELECT name, milliseconds, albumid FROM tracks ORDER BY albumid, milliseconds DESC;</code> <small>Here it will order using <code>ASC</code> in the albumid first and then will check for the milliseconds</small></li>
+        <li><code>SELECT name, milliseconds, albumid FROM tracks ORDER BY 3, 2 DESC;</code> <small>You can sort the data using the column num instead of its name</small></li>
+    </ul>
+
+    <h3>DISTINCT</h3>
+    <span>it allows you to remove the duplicate rows in the result</span>
+    <ul>
+        <li><code>SELECT DISTINCT city FROM customers ORDER BY city;</code> <small>It will keep only one of each duplicate city</small></li>
+        <li><code>SELECT name, milliseconds, albumid FROM tracks ORDER BY albumid, milliseconds DESC;</code> <small>Here it will order using <code>ASC</code> in the albumid first and then will check for the milliseconds</small></li>
+        <li><code>SELECT name, milliseconds, albumid FROM tracks ORDER BY 3, 2 DESC;</code> <small>You can sort the data using the column num instead of its name</small></li>
+    </ul>
+    
+    <h3>Notes for the day</h3>
+    <ul>
+        <li>We dont add ; to a line start with . like <code>.help</code></li>
+        <li>In SQLITE it considers <code>NULL</code> is the smallest value in the data when it comes to sorting <small><code>ASC</code> make it on the top, <code>DESC</code> make it on the bottom</small></li>
+    </ul>
+
+<hr />
+
+</body>
+</html>
