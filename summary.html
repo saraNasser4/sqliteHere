@@ -32,7 +32,7 @@
     </ul>
     
     <h3>ORDER BY</h3>
-    <span>since if you used the normal <code>SELECT</code> it won't be in order we use this</span>
+    <span>since if you used the normal <code>SELECT</code> it won't be in order we use this, it's the last thing in the <code>SELECT</code></span>
     <ul>
         <li><code>SELECT trackid, name, albumid FROM tracks ORDER BY albumid ASC;</code> <small>You need to get x y z from db called tracks the ordering from the small to bigger</small></li>
         <span>You can remove <code>ASC</code> since it's the default or you can add <code>DESC</code></span>
@@ -44,8 +44,6 @@
     <span>it allows you to remove the duplicate rows in the result</span>
     <ul>
         <li><code>SELECT DISTINCT city FROM customers ORDER BY city;</code> <small>It will keep only one of each duplicate city</small></li>
-        <li><code>SELECT name, milliseconds, albumid FROM tracks ORDER BY albumid, milliseconds DESC;</code> <small>Here it will order using <code>ASC</code> in the albumid first and then will check for the milliseconds</small></li>
-        <li><code>SELECT name, milliseconds, albumid FROM tracks ORDER BY 3, 2 DESC;</code> <small>You can sort the data using the column num instead of its name</small></li>
     </ul>
     
     <h3>Notes for the day</h3>
@@ -53,8 +51,47 @@
         <li>We dont add ; to a line start with . like <code>.help</code></li>
         <li>In SQLITE it considers <code>NULL</code> is the smallest value in the data when it comes to sorting <small><code>ASC</code> make it on the top, <code>DESC</code> make it on the bottom</small></li>
     </ul>
+    <hr />
+    
+    <h2>Day 2</h2>
+    <span>Fundamental</span>
+    <h3>WHERE</h3>
+    <span>here we put some conditions and if it is true this would be returned</span>
+    <ul>
+        <li>SELECT name, milliseconds, bytes, albumid FROM tracks WHERE albumid = 1; <small>and you can put more than one condition</small></li>
+        <li>SELECT name, milliseconds, bytes, albumid FROM tracks WHERE albumid = 1 AND milliseconds > 250000;</li>
+        <li>SELECT name, albumid, composer FROM tracks WHERE composer LIKE '%Smith%' ORDER BY albumid; <small>any compaser contains Smith</small></li>
+        <li>SELECT name, milliseconds, bytes, albumid FROM tracks WHERE albumid IN (1, 2, 3);</li>
+        <li>SELECT name, milliseconds, bytes, albumid FROM tracks WHERE albumid NOT BETWEEN 1 AND 3; </li>
+        <li>SELECT BillingAddress, BillingCity, Total FROM invoices WHERE Total > 5 AND (BillingCity = 'New York' OR BillingCity = 'Chicago') ORDER BY Total;</li>
+        <li>SELECT Name, Composer FROM tracks WHERE Composer IS NULL ORDER BY Name;</li>
+        <li>SELECT Name, Composer FROM tracks WHERE Composer IS NOT NULL ORDER BY Name;</li>
+    </ul>
 
-<hr />
+    <h3>LIMIT</h3>
+    <span>when want to filter your results with showing only some raws and you need to use it always with <code>ORDER BY</code></span>
+    <ul>
+        <li>SELECT trackid, name, milliseconds FROM tracks ORDER BY milliseconds ASC LIMIT 5;</li>
+        <li>SELECT trackid, name, milliseconds FROM tracks ORDER BY milliseconds DESC LIMIT 1 OFFSET 0; <small>gets you the highest mill in the whole list since <code>OFFSET</code> starts counting from 0</small></li>
+    </ul>
 
+    <h3>JOIN</h3>
+    <span>we use this one when you have to tables and they connected so you wanna filter using the two of them</span>
+    <ul>
+        <li>
+            <span>INNER JOIN</span>
+            <ul>
+                <li>SELECT users.name, orders.product FROM users INNER JOIN orders ON users.id = orders.user_id; <small>if there's no value or <code>NULL</code> it won't give it to you</small></li>
+            </ul>
+        </li>
+        <li>
+            <span>LEFT JOIN</span>
+            <ul>
+                <li>SELECT users.name, orders.product FROM users LEFT JOIN orders ON users.id = orders.user_id; <small>Shows everything from the left table (first one) even if there's no match in the second even <code>NULL</code></li>
+            </ul>
+        </li>
+    </ul>
+    <hr />
+    
 </body>
 </html>
